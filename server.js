@@ -3,8 +3,10 @@ const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // ✅ AGORA FUNCIONA NA RENDER
+
 app.use(cors());
 
 // CONFIGURAÇÃO DO MULTER PARA SALVAR OS PDFs NA PASTA uploads/
@@ -20,7 +22,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// PERMITIR USO DE ARQUIVOS ESTÁTICOS (html, js, css)
+// PERMITIR USO DE ARQUIVOS ESTÁTICOS
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ENDPOINT DE UPLOAD
@@ -65,5 +67,5 @@ app.post('/upload', upload.single('arquivoContrato'), (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
