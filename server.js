@@ -1,12 +1,11 @@
-const cors = require('cors');
-app.use(cors());
-
 const express = require('express');
+const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 const app = express();
 const PORT = 3000;
+app.use(cors());
 
 // CONFIGURAÇÃO DO MULTER PARA SALVAR OS PDFs NA PASTA uploads/
 const storage = multer.diskStorage({
